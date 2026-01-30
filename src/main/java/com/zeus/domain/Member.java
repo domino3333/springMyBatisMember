@@ -13,6 +13,8 @@ public class Member {
 	private String pw;
 	private String name;
 	private Date regDate;
-	private Date moDate;
+	private Date modDate;
+	private String searchType;
+	private String keyword;
 	private List<MemberAuth> authList;
 }
