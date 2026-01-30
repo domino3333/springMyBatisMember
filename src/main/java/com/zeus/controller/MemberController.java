@@ -1,5 +1,7 @@
 package com.zeus.controller;
 
+import java.util.List;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,23 +44,22 @@ public class MemberController {
 		model.addAttribute("message","%s님 등록이 실패되었습니다.".formatted(member.getName()));
 		return "member/failed";
 	}
-	/*
-	@GetMapping("/boardlist")
-	public String boardList(Model model) {
-		log.info("boardlist");
+
+	@GetMapping("/memberList")
+	public String memberList(Model model) {
+		log.info("memberList");
 
 		try {
-			List<Board> boardList = boardService.list();
-
-			model.addAttribute("boardList", boardList);
+			List<Member> memberList = memberService.list();
+			model.addAttribute("memberList", memberList);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "board/boardList";
+		return "member/memberList";
 	}
-
+	/*
 	@GetMapping("/detail")
 	public String boardDetail(Board b, Model model) {
 		log.info("boardDetail board = " + b.toString());
