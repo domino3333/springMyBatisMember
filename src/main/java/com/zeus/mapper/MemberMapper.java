@@ -5,6 +5,8 @@ import java.util.List;
 import com.zeus.domain.Member;
 import com.zeus.domain.MemberAuth;
 
+
+
 public interface MemberMapper {
 	
 	
