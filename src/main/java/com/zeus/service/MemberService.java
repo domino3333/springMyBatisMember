@@ -16,4 +16,6 @@ public interface MemberService {
 	public int update(Member member) throws Exception;
 	public int delete(Member member) throws Exception;
 
+	public List<Member> search(Member member) throws Exception;
+
 }

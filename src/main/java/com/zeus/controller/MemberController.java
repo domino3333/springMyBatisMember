@@ -131,20 +131,17 @@ public class MemberController {
 		return "member/failed";
 	}
 	
-	/*
 	@GetMapping("/search")
-	public String boardSearch(Model model, Board board) {
-		log.info("searchType = " + board.toString());
+	public String memberSearch(Member member,Model model) {
+		log.info("member Search = " + member.toString());
 
 		try {
-			List<Board> boardList = boardService.boardSearch(board);
-
-			model.addAttribute("boardList", boardList);
+			List<Member> memberList = memberService.search(member);
+			model.addAttribute("memberList", memberList);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "board/boardList";
+		return "member/memberList";
 	}
-*/
 }

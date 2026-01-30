@@ -204,6 +204,18 @@ body {
 		</div>
 
 
+		<div class="search-container">
+			<form action="/member/search" method="get" class="search-form">
+				<select name="searchType" class="search-select">
+					<option value="id">ID</option>
+					<option value="name">NAME</option>
+				</select> 
+				<input type="text" name="keyword" class="search-input"
+					placeholder="검색할 키워드 입력">
+				<button type="submit" class="btn-search">검색</button>
+			</form>
+		</div>
+
 
 		<table class="t1-table">
 			<thead>

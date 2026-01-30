@@ -14,5 +14,7 @@ public class Member {
 	private String name;
 	private Date regDate;
 	private Date modDate;
+	private String searchType;
+	private String keyword;
 	private List<MemberAuth> authList;
 }

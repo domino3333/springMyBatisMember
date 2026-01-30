@@ -69,4 +69,14 @@ public class MemberServiceImpl implements MemberService {
 		return count;
 	}
 
+	@Override
+	public List<Member> search(Member member) throws Exception {
+		List<Member> memberList = mapper.search(member);
+		return memberList;
+	}
+	
+	
+	
+	
+
 }
