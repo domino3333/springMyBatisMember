@@ -14,7 +14,6 @@ public interface MemberService {
 	public List<Member> list() throws Exception;
 	public Member read(Member member) throws Exception;
 	public int update(Member member) throws Exception;
-	// 회원 삭제=> 비즈니스 모델(회원테이블삭제, 회원권한 테이블에도 삭제)
 	public int delete(Member member) throws Exception;
 
 }
