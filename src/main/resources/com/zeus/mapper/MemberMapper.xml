@@ -41,7 +41,7 @@
 	</select>
 	<update id="update" parameterType="Member">
 		UPDATE mybatisMember
-		SET name =#{name}
+		SET name =#{name}, pw= #{pw}
 		WHERE no = #{no}
 	</update>
 	<delete id="delete" parameterType="Member">

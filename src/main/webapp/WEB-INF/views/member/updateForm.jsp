@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,6 +107,13 @@ textarea {
 	cursor: pointer;
 	transition: 0.3s;
 	text-transform: uppercase;
+	/* 중앙 정렬 핵심 속성 */
+	display: flex;
+	justify-content: center; /* 가로 중앙 */
+	align-items: center; /* 세로 중앙 */
+	text-decoration: none; /* 링크 밑줄 제거 */
+	text-align: center;
+	box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
 }
 
 .btn-submit {
@@ -114,18 +123,6 @@ textarea {
 
 .btn-submit:hover {
 	background: #ff1a4a;
-	transform: translateY(-3px);
-	box-shadow: 0 5px 15px rgba(226, 1, 45, 0.5);
-}
-
-.btn-reset {
-	background: #333;
-	color: #fff;
-}
-
-.btn-reset:hover {
-	background: #fff;
-	color: #ff1a4a;
 	transform: translateY(-3px);
 	box-shadow: 0 5px 15px rgba(226, 1, 45, 0.5);
 }
@@ -148,66 +145,59 @@ textarea {
 	text-align: center;
 	font-family: monospace;
 }
-
-.btn-list {
-	display: inline-block;
-	padding: 15px 40px;
-	background: var(--t1-red);
-	color: white;
-	text-decoration: none;
-	font-weight: bold;
-	border-radius: 5px;
-	transition: 0.3s;
-	border: none;
-	cursor: pointer;
-}
-
-.btn-list:hover {
-	background: #ffffff;
-	color: var(--t1-red);
-	box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-}
 </style>
 </head>
 <body>
 
 	<div class="write-container">
 		<div class="header">
-			<h1>
-				T1 COMMUNITY<br><span>${board.writer}님의 게시판 수정</span>
-			</h1>
+			<h1>${member.name}님수정화면</h1>
 		</div>
-
-		<form action="/board/update" method="post">
+		<form:form modelAttribute="member" action="/member/update"
+			method="post">
 			<div class="form-group">
-				<label for="no">작성자 번호</label> <input type="text"
-					id="no" name="no" value="${board.no}" readonly>
+				<label for="no">회원번호</label> <input type="text" id="no" name="no"
+					value="${member.no}" readonly>
 			</div>
 			<div class="form-group">
-				<label for="writer">작성자(Writer)</label> <input type="text"
-					id="writer" name="writer" value="${board.writer}" required>
+				<label for="id">회원아이디</label> <input type="text" id="id" name="id"
+					value="${member.id}" readonly>
+			</div>
+			<div class="form-group">
+				<label for="name">이름</label> <input type="text" id="name"
+					name="name" value="${member.name}" required>
 			</div>
 
 			<div class="form-group">
-				<label for="title">제목(Title)</label> <input type="text" id="title"
-					name="title" value="${board.title}" required>
+				<label for="pw">암호</label> <input type="password" id="pw" name="pw"
+					value="${member.pw}" required>
 			</div>
-
 			<div class="form-group">
-				<label for="content">내용(Content)</label>
-				<textarea id="content" name="content">${board.content}</textarea>
+				<form:select path="authList[0].auth" disabled="false">
+					<form:option value="" label="=== 선택해 주세요 ===" />
+					<form:option value="ROLE_USER" label="사용자" />
+					<form:option value="ROLE_MEMBER" label="회원" />
+					<form:option value="ROLE_ADMIN" label="관리자" />
+				</form:select>
+				<form:select path="authList[1].auth" disabled="false">
+					<form:option value="" label="=== 선택해 주세요 ===" />
+					<form:option value="ROLE_USER" label="사용자" />
+					<form:option value="ROLE_MEMBER" label="회원" />
+					<form:option value="ROLE_ADMIN" label="관리자" />
+				</form:select>
+				<form:select path="authList[2].auth" disabled="false">
+					<form:option value="" label="=== 선택해 주세요 ===" />
+					<form:option value="ROLE_USER" label="사용자" />
+					<form:option value="ROLE_MEMBER" label="회원" />
+					<form:option value="ROLE_ADMIN" label="관리자" />
+				</form:select>
 			</div>
-
 			<div class="btn-area">
-				<a href="/board/boardlist" class="btn-list">게시판 목록</a>
-				<button type="submit" class="btn btn-submit">게시판 수정</button>
-				<button type="reset" class="btn btn-reset">수정 취소</button>
+				<a href="/member/memberList" class="btn btn-cancel">회원리스트</a>
+				<button type="submit" class="btn btn-cancel">회원수정전송</button>
+				<button type="reset" class="btn btn-cancel">회원수정취소</button>
 			</div>
-		</form>
-
-		<div class="bottom-deco">[ SYSTEM: READY TO TRANSMIT DATA TO
-			JDBCBOARD ]</div>
+		</form:form>
 	</div>
-
 </body>
 </html>
